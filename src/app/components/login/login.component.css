@@ -1,0 +1,93 @@
+.modal {
+    background-color: rgba(0,0,0,0.5);
+  }
+  
+  .d-block {
+    display: block !important;
+  }
+  
+  .modal-backdrop {
+    opacity: 0.5;
+  }
+  
+  body.modal-open {
+    overflow: hidden;
+  }
+  .modal-backdrop.show {
+    opacity: 0.5;
+  }
+  
+  .modal.show {
+    opacity: 1;
+  }
+  
+  .modal {
+    background-color: rgba(0,0,0,0.4);
+  }
+  .modal.show {
+    display: block !important;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-backdrop.show {
+    opacity: 0.5;
+  }
+  .modal {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal.show {
+    display: block;
+  }
+
+
+  .card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .card-header {
+    border-bottom: none;
+  }
+  
+  .form-control {
+    border: 1px solid #e1e1e1;
+  }
+  
+  .form-control:focus {
+    box-shadow: none;
+    border-color: #0d6efd;
+  }
+  
+  .input-group-text {
+    border: 1px solid #e1e1e1;
+    border-right: none;
+  }
+  
+  .form-control {
+    border-left: none;
+  }
+  
+  .modal-content {
+    border: none;
+    border-radius: 15px;
+  }
+  
+  .btn {
+    border-radius: 8px;
+  }
+  
+  .alert {
+    border-radius: 8px;
+  }
+  
+  /* Animation for modal */
+  .modal.fade .modal-dialog {
+    transition: transform .2s ease-out;
+    transform: translate(0,-50px);
+  }
+  
+  .modal.fade.show .modal-dialog {
+    transform: none;
+  }

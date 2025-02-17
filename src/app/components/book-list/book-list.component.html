@@ -1,0 +1,122 @@
+<div class="container py-5">
+  <!-- Header Section -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="mb-1">Book Collection</h2>
+      <p class="text-muted mb-0">Manage and explore your book inventory</p>
+    </div>
+    <button class="btn btn-primary" (click)="showAddForm = !showAddForm">
+      <i class="fas" [ngClass]="showAddForm ? 'fa-times' : 'fa-plus'"></i>
+      <span class="ms-2">{{ showAddForm ? 'Cancel' : 'Add New Book' }}</span>
+    </button>
+  </div>
+
+  <!-- Error Alert -->
+  <div class="alert alert-danger alert-dismissible fade show" *ngIf="error">
+    <i class="fas fa-exclamation-circle me-2"></i>
+    {{ error }}
+    <button type="button" class="btn-close" (click)="error = ''"></button>
+  </div>
+
+  <!-- Add Book Form -->
+  <div class="card shadow-sm mb-4" *ngIf="showAddForm">
+    <div class="card-body">
+      <h3 class="card-title mb-4">Add New Book</h3>
+      <form (ngSubmit)="onAddBook()" #bookForm="ngForm">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Title</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="newBook.title" 
+              name="title" 
+              required
+              placeholder="Enter book title">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Author</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="newBook.author" 
+              name="author" 
+              required
+              placeholder="Enter author name">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Price</label>
+            <div class="input-group">
+              <span class="input-group-text">$</span>
+              <input 
+                type="number" 
+                class="form-control" 
+                [(ngModel)]="newBook.price" 
+                name="price" 
+                required
+                min="0"
+                step="0.01"
+                placeholder="0.00">
+            </div>
+          </div>
+          <div class="col-12 mb-3">
+            <label class="form-label">Description</label>
+            <textarea 
+              class="form-control" 
+              [(ngModel)]="newBook.description" 
+              name="description" 
+              required
+              rows="3"
+              placeholder="Enter book description"></textarea>
+          </div>
+        </div>
+        <div class="text-end">
+          <button type="submit" class="btn btn-success" [disabled]="!bookForm.valid">
+            <i class="fas fa-plus me-2"></i>Add Book
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Books Grid -->
+  <div class="row g-4">
+    <div class="col-md-6 col-lg-4" *ngFor="let book of books">
+      <div class="card h-100 shadow-sm hover-shadow">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <h5 class="card-title text-primary mb-0">{{ book.title }}</h5>
+            <span class="badge bg-primary">$ {{ book.price }}</span>
+          </div>
+          <h6 class="card-subtitle mb-3 text-muted">
+            <i class="fas fa-user me-2"></i>{{ book.author }}
+          </h6>
+          <p class="card-text text-muted mb-4">{{ book.description }}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <button class="btn btn-outline-primary" [routerLink]="['/books', book.id]">
+              <i class="fas fa-info-circle me-2"></i>Details
+            </button>
+            <button class="btn btn-outline-danger" (click)="onDeleteBook(book.id!)">
+              <i class="fas fa-trash-alt me-2"></i>Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div class="text-center py-5" *ngIf="loading">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="text-muted mt-2">Loading books...</p>
+  </div>
+
+  <!-- No Books Message -->
+  <div class="text-center py-5" *ngIf="!loading && books.length === 0">
+    <i class="fas fa-books fa-3x text-muted mb-3"></i>
+    <h4>No Books Found</h4>
+    <p class="text-muted">Start by adding a new book to your collection</p>
+  </div>
+</div>

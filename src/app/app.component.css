@@ -1,0 +1,28 @@
+.modal-content {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+  
+  .modal.fade .modal-dialog {
+    transition: transform .2s ease-out;
+    transform: translate(0,-50px);
+  }
+  
+  .modal.fade.show .modal-dialog {
+    transform: none;
+  }
+  
+  .btn {
+    border-radius: 8px;
+    padding: 0.6rem 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  
+  .modal-backdrop.fade {
+    transition: opacity .2s linear;
+  }
